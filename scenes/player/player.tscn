@@ -49,3 +49,11 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cj8ai")
 animation = &"walk"
 speed_scale = 2.0
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=327101684]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
