@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cbmaa31l21d5t"]
+
+[ext_resource type="Script" uid="uid://c46uncwfcelmq" path="res://scenes/npc/npc.gd" id="1_pcwmf"]
+[ext_resource type="Texture2D" uid="uid://cfnp8jmqb3cr3" path="res://art/characters/player_idle.png" id="1_sspvn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6lqs"]
+radius = 28.0
+
+[node name="NPC" type="Area2D" unique_id=1111286413]
+script = ExtResource("1_pcwmf")
+
+[node name="NPCSprite" type="Sprite2D" parent="." unique_id=768912904]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_sspvn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1626402167]
+shape = SubResource("CircleShape2D_c6lqs")
+
+[node name="Prompt" type="Label" parent="." unique_id=1325885948]
+visible = false
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 34.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 9
+text = "E: Bicara"
