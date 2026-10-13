@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c7ls1rpnfmak5" path="res://scripts/systems/quest_manager.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://q0ebvwgxj0me" path="res://scenes/items/apple.tscn" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://cs82j6rkv853b" path="res://scripts/ui/hud.gd" id="8_tipki"]
+[ext_resource type="Script" uid="uid://b5tuf5o8xd3bk" path="res://scripts/ui/inventory_ui.gd" id="9_choun"]
+[ext_resource type="Texture2D" uid="uid://cttss4vemu3q4" path="res://art/items/apple.png" id="10_ya4ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -180,3 +182,47 @@ offset_top = 25.0
 offset_right = 177.0
 offset_bottom = 48.0
 text = "Quest: Belum Dimulai"
+
+[node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1407750238]
+layer = 3
+script = ExtResource("9_choun")
+
+[node name="InventoryPanel" type="Panel" parent="InventoryUI" unique_id=277190010]
+visible = false
+offset_left = 160.0
+offset_top = 82.0
+offset_right = 416.0
+offset_bottom = 242.0
+
+[node name="InventoryTitle" type="Label" parent="InventoryUI/InventoryPanel" unique_id=268126316]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 107.0
+offset_bottom = 35.0
+text = "INVENTORY"
+
+[node name="AppleIcon" type="TextureRect" parent="InventoryUI/InventoryPanel" unique_id=604724040]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 52.0
+offset_right = 72.0
+offset_bottom = 100.0
+texture = ExtResource("10_ya4ey")
+
+[node name="AppleLabel" type="Label" parent="InventoryUI/InventoryPanel" unique_id=1745469559]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 62.0
+offset_right = 124.0
+offset_bottom = 85.0
+text = "Apel: 0"
+
+[node name="HintLabel" type="Label" parent="InventoryUI/InventoryPanel" unique_id=11351104]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 132.0
+offset_right = 235.0
+offset_bottom = 155.0
+text = "I - Tutup"
