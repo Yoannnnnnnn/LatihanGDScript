@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d03d4ebjwfea0" path="res://art/tiles/basic_tiles.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cbmaa31l21d5t" path="res://scenes/npc/npc.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://5cjpi2upvtpe" path="res://scripts/ui/dialogue_ui.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://c7ls1rpnfmak5" path="res://scripts/systems/quest_manager.gd" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://q0ebvwgxj0me" path="res://scenes/items/apple.tscn" id="7_o6xl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -31,8 +33,14 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0.45681834, 0.09445266, 1)
 
-[node name="Player" parent="." unique_id=1056297901 instance=ExtResource("2_0wfyh")]
-position = Vector2(576, 324)
+[node name="Apple" parent="." unique_id=61084422 instance=ExtResource("7_o6xl0")]
+position = Vector2(960, 50)
+
+[node name="Apple3" parent="." unique_id=1735856314 instance=ExtResource("7_o6xl0")]
+position = Vector2(82, 589)
+
+[node name="Apple2" parent="." unique_id=1980413538 instance=ExtResource("7_o6xl0")]
+position = Vector2(86, 235)
 
 [node name="WallTop" type="StaticBody2D" parent="." unique_id=1235332395]
 position = Vector2(648, 24)
@@ -100,6 +108,10 @@ dialogue_text = "Halo, selamat datang di kota kami.
 Kota ini cukup kecil, tetapi banyak hal menarik yang bisa kamu temukan.
 
 Cobalah berbicara dengan warga lain di sekitar sini."
+quest_giver = true
+
+[node name="Player" parent="." unique_id=1056297901 instance=ExtResource("2_0wfyh")]
+position = Vector2(576, 324)
 
 [node name="DialogueUI" type="CanvasLayer" parent="." unique_id=2104957641]
 script = ExtResource("5_tbgi4")
@@ -138,3 +150,6 @@ offset_top = 72.0
 offset_right = 504.0
 offset_bottom = 95.0
 text = "E: Tutup"
+
+[node name="QuestManager" type="Node" parent="." unique_id=1461039699]
+script = ExtResource("6_tefeu")
