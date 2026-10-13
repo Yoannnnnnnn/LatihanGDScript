@@ -23,4 +23,9 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if player_nearby and event.is_action_pressed("interact"):
-		print(npc_name + ": " + dialogue_text)
+		var dialogue_ui = get_tree().current_scene.get_node_or_null("DialogueUI")
+
+		if dialogue_ui != null:
+			dialogue_ui.show_dialogue(npc_name, dialogue_text)
+
+		get_viewport().set_input_as_handled()

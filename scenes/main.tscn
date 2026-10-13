@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://e3km581ddmvh" path="res://scenes/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://d03d4ebjwfea0" path="res://art/tiles/basic_tiles.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cbmaa31l21d5t" path="res://scenes/npc/npc.tscn" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://5cjpi2upvtpe" path="res://scripts/ui/dialogue_ui.gd" id="5_tbgi4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -94,3 +95,40 @@ color = Color(0.15487596, 0.154876, 0.15487596, 1)
 [node name="NPC" parent="." unique_id=1111286413 instance=ExtResource("4_jyhfs")]
 position = Vector2(411, 280)
 npc_name = "Pak Tarno"
+dialogue_text = "Tolong bawakan saya dua buah apel"
+
+[node name="DialogueUI" type="CanvasLayer" parent="." unique_id=2104957641]
+script = ExtResource("5_tbgi4")
+
+[node name="DialoguePanel" type="Panel" parent="DialogueUI" unique_id=61568703]
+visible = false
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 560.0
+offset_bottom = 308.0
+
+[node name="SpeakerLabel" type="Label" parent="DialogueUI/DialoguePanel" unique_id=1575053897]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 52.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 10
+text = "NPC"
+
+[node name="DialogueLabel" type="Label" parent="DialogueUI/DialoguePanel" unique_id=1857358327]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 28.0
+offset_right = 532.0
+offset_bottom = 56.0
+text = "Dialogue NPC akan muncul disini"
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="DialogueUI/DialoguePanel" unique_id=717104696]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 50.0
+offset_right = 504.0
+offset_bottom = 73.0
+text = "E: Tutup"
