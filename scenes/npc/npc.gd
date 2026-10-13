@@ -25,7 +25,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player_nearby and event.is_action_pressed("interact"):
 		var dialogue_ui = get_tree().current_scene.get_node_or_null("DialogueUI")
 
-		if dialogue_ui != null:
+		if dialogue_ui != null and not dialogue_ui.is_open:
 			dialogue_ui.show_dialogue(npc_name, dialogue_text)
-
-		get_viewport().set_input_as_handled()
+			get_viewport().set_input_as_handled()

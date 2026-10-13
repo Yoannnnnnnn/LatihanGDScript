@@ -3,24 +3,55 @@ extends CanvasLayer
 @onready var dialogue_panel: Panel = $DialoguePanel
 @onready var speaker_label: Label = $DialoguePanel/SpeakerLabel
 @onready var dialogue_label: Label = $DialoguePanel/DialogueLabel
+@onready var hint_label: Label = $DialoguePanel/HintLabel
 
+var dialogue_lines: PackedStringArray = []
+var current_line: int = 0
 var is_open: bool = false
 
 func _ready() -> void:
 	dialogue_panel.visible = false
+	hint_label.text = "E - Tutup"
 
 func show_dialogue(speaker: String, text: String) -> void:
+	if is_open:
+		return
+
+	dialogue_lines = text.split("\n", false)
+
+	if dialogue_lines.is_empty():
+		dialogue_lines.append(text)
+
+	current_line = 0
+
 	speaker_label.text = speaker
-	dialogue_label.text = text
+	dialogue_label.text = dialogue_lines[current_line]
 
 	dialogue_panel.visible = true
 	is_open = true
 
+	_update_hint()
+
 func hide_dialogue() -> void:
 	dialogue_panel.visible = false
 	is_open = false
+	dialogue_lines.clear()
+	current_line = 0
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_open and event.is_action_pressed("interact"):
-		hide_dialogue()
 		get_viewport().set_input_as_handled()
+
+		current_line += 1
+
+		if current_line >= dialogue_lines.size():
+			hide_dialogue()
+		else:
+			dialogue_label.text = dialogue_lines[current_line]
+			_update_hint()
+
+func _update_hint() -> void:
+	if current_line < dialogue_lines.size() - 1:
+		hint_label.text = "E - Lanjut"
+	else:
+		hint_label.text = "E - Tutup"

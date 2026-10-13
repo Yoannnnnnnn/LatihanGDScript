@@ -95,7 +95,11 @@ color = Color(0.15487596, 0.154876, 0.15487596, 1)
 [node name="NPC" parent="." unique_id=1111286413 instance=ExtResource("4_jyhfs")]
 position = Vector2(411, 280)
 npc_name = "Pak Tarno"
-dialogue_text = "Tolong bawakan saya dua buah apel"
+dialogue_text = "Halo, selamat datang di kota kami.
+
+Kota ini cukup kecil, tetapi banyak hal menarik yang bisa kamu temukan.
+
+Cobalah berbicara dengan warga lain di sekitar sini."
 
 [node name="DialogueUI" type="CanvasLayer" parent="." unique_id=2104957641]
 script = ExtResource("5_tbgi4")
@@ -103,7 +107,7 @@ script = ExtResource("5_tbgi4")
 [node name="DialoguePanel" type="Panel" parent="DialogueUI" unique_id=61568703]
 visible = false
 offset_left = 16.0
-offset_top = 240.0
+offset_top = 216.0
 offset_right = 560.0
 offset_bottom = 308.0
 
@@ -117,18 +121,20 @@ theme_override_font_sizes/font_size = 10
 text = "NPC"
 
 [node name="DialogueLabel" type="Label" parent="DialogueUI/DialoguePanel" unique_id=1857358327]
+custom_minimum_size = Vector2(1, 1)
 layout_mode = 0
 offset_left = 12.0
 offset_top = 28.0
 offset_right = 532.0
-offset_bottom = 56.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 10
 text = "Dialogue NPC akan muncul disini"
 autowrap_mode = 3
 
 [node name="HintLabel" type="Label" parent="DialogueUI/DialoguePanel" unique_id=717104696]
 layout_mode = 0
 offset_left = 440.0
-offset_top = 50.0
+offset_top = 72.0
 offset_right = 504.0
-offset_bottom = 73.0
+offset_bottom = 95.0
 text = "E: Tutup"
