@@ -4,10 +4,12 @@ const SAVE_PATH := "user://mini_life_rpg_save.json"
 
 var player
 var quest_manager
+var time_manager
 
 func _ready() -> void:
 	player = get_tree().current_scene.get_node_or_null("Player")
 	quest_manager = get_tree().current_scene.get_node_or_null("QuestManager")
+	time_manager = get_tree().current_scene.get_node_or_null("TimeManager")
 
 	print("Tekan K untuk menyimpan game.")
 	print("Tekan L untuk memuat game.")
@@ -22,7 +24,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func save_game() -> void:
-	if player == null or quest_manager == null:
+	if (
+		player == null
+		or quest_manager == null
+		or time_manager == null
+	):
 		print("Save gagal: node penting tidak ditemukan.")
 		return
 
@@ -35,7 +41,10 @@ func save_game() -> void:
 		"quest_completed": quest_manager.quest_completed,
 		"apples_collected": quest_manager.apples_collected,
 		"money": quest_manager.money,
-		"collected_apple_ids": quest_manager.collected_apple_ids
+		"collected_apple_ids": quest_manager.collected_apple_ids,
+		"day": time_manager.day,
+		"hour": time_manager.hour,
+		"minute": time_manager.minute
 	}
 
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -98,6 +107,12 @@ func load_game() -> void:
 
 	for item_id in saved_apple_ids:
 		quest_manager.collected_apple_ids.append(str(item_id))
+
+	time_manager.set_time(
+		int(save_data.get("day", 1)),
+		int(save_data.get("hour", 8)),
+		int(save_data.get("minute", 0))
+	)
 
 	quest_manager.notify_state_changed()
 

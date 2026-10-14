@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b5tuf5o8xd3bk" path="res://scripts/ui/inventory_ui.gd" id="9_choun"]
 [ext_resource type="Texture2D" uid="uid://cttss4vemu3q4" path="res://art/items/apple.png" id="10_ya4ey"]
 [ext_resource type="Script" uid="uid://b57arygcbg8uh" path="res://scripts/systems/save_manager.gd" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://bbl5wwxl6jmpa" path="res://scripts/systems/time_manager.gd" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -167,8 +168,8 @@ script = ExtResource("8_tipki")
 [node name="StatusPanel" type="Panel" parent="HUD" unique_id=47657050]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 168.0
-offset_bottom = 56.0
+offset_right = 192.0
+offset_bottom = 76.0
 
 [node name="MoneyLabel" type="Label" parent="HUD/StatusPanel" unique_id=1952715441]
 layout_mode = 0
@@ -185,6 +186,14 @@ offset_top = 25.0
 offset_right = 177.0
 offset_bottom = 48.0
 text = "Quest: Belum Dimulai"
+
+[node name="TimeLabel" type="Label" parent="HUD/StatusPanel" unique_id=1327829033]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 44.0
+offset_right = 100.0
+offset_bottom = 67.0
+text = "Hari 1 08:00"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1407750238]
 layer = 3
@@ -232,3 +241,7 @@ text = "I - Tutup"
 
 [node name="SaveManager" type="Node" parent="." unique_id=1284349400]
 script = ExtResource("11_ya4ey")
+
+[node name="TimeManager" type="Node" parent="." unique_id=708631548]
+script = ExtResource("12_eb6dy")
+seconds_per_game_minute = 2.0
