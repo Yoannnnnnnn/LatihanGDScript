@@ -8,6 +8,10 @@ extends Area2D
 @export_range(0, 23, 1) var active_from_hour: int = 8
 @export_range(0, 23, 1) var active_until_hour: int = 18
 
+@export var location_schedule_enabled: bool = false
+@export var work_position: Vector2 = Vector2(700, 324)
+@export var home_position: Vector2 = Vector2(900, 520)
+
 var player_nearby: bool = false
 var is_available: bool = true
 var time_manager
@@ -60,6 +64,17 @@ func _update_schedule() -> void:
 		is_available = _is_hour_available(time_manager.hour)
 	else:
 		is_available = true
+
+	if location_schedule_enabled and schedule_enabled:
+		var target_position: Vector2
+
+		if is_available:
+			target_position = work_position
+		else:
+			target_position = home_position
+
+		if position.distance_to(target_position) > 0.1:
+			position = target_position
 
 	_update_prompt()
 
