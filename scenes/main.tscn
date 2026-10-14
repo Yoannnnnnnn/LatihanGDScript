@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cttss4vemu3q4" path="res://art/items/apple.png" id="10_ya4ey"]
 [ext_resource type="Script" uid="uid://b57arygcbg8uh" path="res://scripts/systems/save_manager.gd" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://bbl5wwxl6jmpa" path="res://scripts/systems/time_manager.gd" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://nqiblm3qwots" path="res://scripts/systems/day_night_layer.gd" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -121,7 +122,7 @@ quest_giver = true
 position = Vector2(576, 324)
 
 [node name="DialogueUI" type="CanvasLayer" parent="." unique_id=2104957641]
-layer = 2
+layer = 3
 script = ExtResource("5_tbgi4")
 
 [node name="DialoguePanel" type="Panel" parent="DialogueUI" unique_id=61568703]
@@ -163,6 +164,7 @@ text = "E: Tutup"
 script = ExtResource("6_tefeu")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=95664214]
+layer = 2
 script = ExtResource("8_tipki")
 
 [node name="StatusPanel" type="Panel" parent="HUD" unique_id=47657050]
@@ -196,7 +198,7 @@ offset_bottom = 67.0
 text = "Hari 1 08:00"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1407750238]
-layer = 3
+layer = 4
 script = ExtResource("9_choun")
 
 [node name="InventoryPanel" type="Panel" parent="InventoryUI" unique_id=277190010]
@@ -244,4 +246,13 @@ script = ExtResource("11_ya4ey")
 
 [node name="TimeManager" type="Node" parent="." unique_id=708631548]
 script = ExtResource("12_eb6dy")
-seconds_per_game_minute = 2.0
+seconds_per_game_minute = 0.2
+
+[node name="DayNightLayer" type="CanvasLayer" parent="." unique_id=560252479]
+script = ExtResource("13_trceg")
+
+[node name="NightOverlay" type="ColorRect" parent="DayNightLayer" unique_id=104881823]
+offset_right = 576.0
+offset_bottom = 324.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
