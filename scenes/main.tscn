@@ -117,6 +117,7 @@ Kota ini cukup kecil, tetapi banyak hal menarik yang bisa kamu temukan.
 
 Cobalah berbicara dengan warga lain di sekitar sini."
 quest_giver = true
+schedule_enabled = true
 
 [node name="Player" parent="." unique_id=1056297901 instance=ExtResource("2_0wfyh")]
 position = Vector2(576, 324)
@@ -246,7 +247,7 @@ script = ExtResource("11_ya4ey")
 
 [node name="TimeManager" type="Node" parent="." unique_id=708631548]
 script = ExtResource("12_eb6dy")
-seconds_per_game_minute = 0.2
+seconds_per_game_minute = 0.1
 
 [node name="DayNightLayer" type="CanvasLayer" parent="." unique_id=560252479]
 script = ExtResource("13_trceg")
