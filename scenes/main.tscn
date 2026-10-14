@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cs82j6rkv853b" path="res://scripts/ui/hud.gd" id="8_tipki"]
 [ext_resource type="Script" uid="uid://b5tuf5o8xd3bk" path="res://scripts/ui/inventory_ui.gd" id="9_choun"]
 [ext_resource type="Texture2D" uid="uid://cttss4vemu3q4" path="res://art/items/apple.png" id="10_ya4ey"]
+[ext_resource type="Script" uid="uid://b57arygcbg8uh" path="res://scripts/systems/save_manager.gd" id="11_ya4ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -41,9 +42,11 @@ position = Vector2(960, 50)
 
 [node name="Apple3" parent="." unique_id=1735856314 instance=ExtResource("7_o6xl0")]
 position = Vector2(82, 589)
+item_id = "apple_03"
 
 [node name="Apple2" parent="." unique_id=1980413538 instance=ExtResource("7_o6xl0")]
 position = Vector2(86, 235)
+item_id = "apple_02"
 
 [node name="WallTop" type="StaticBody2D" parent="." unique_id=1235332395]
 position = Vector2(648, 24)
@@ -226,3 +229,6 @@ offset_top = 132.0
 offset_right = 235.0
 offset_bottom = 155.0
 text = "I - Tutup"
+
+[node name="SaveManager" type="Node" parent="." unique_id=1284349400]
+script = ExtResource("11_ya4ey")
