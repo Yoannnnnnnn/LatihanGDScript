@@ -119,6 +119,7 @@ Cobalah berbicara dengan warga lain di sekitar sini."
 quest_giver = true
 schedule_enabled = true
 location_schedule_enabled = true
+travel_duration = 3.0
 
 [node name="Player" parent="." unique_id=1056297901 instance=ExtResource("2_0wfyh")]
 position = Vector2(576, 324)

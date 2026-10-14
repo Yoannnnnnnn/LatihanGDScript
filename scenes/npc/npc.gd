@@ -12,9 +12,14 @@ extends Area2D
 @export var work_position: Vector2 = Vector2(700, 324)
 @export var home_position: Vector2 = Vector2(900, 520)
 
+@export_range(0.1, 10.0, 0.1)
+var travel_duration: float = 2.0
+
 var player_nearby: bool = false
 var is_available: bool = true
 var time_manager
+var movement_tween: Tween
+var is_moving: bool = false
 
 @onready var prompt: Label = $Prompt
 
@@ -41,6 +46,9 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not player_nearby:
+		return
+
+	if is_moving:
 		return
 
 	if not is_available:
@@ -74,9 +82,33 @@ func _update_schedule() -> void:
 			target_position = home_position
 
 		if position.distance_to(target_position) > 0.1:
-			position = target_position
+			_move_to(target_position)
 
 	_update_prompt()
+
+func _move_to(target_position: Vector2) -> void:
+	if movement_tween != null and movement_tween.is_valid():
+		movement_tween.kill()
+
+	is_moving = true
+	_update_prompt()
+
+	movement_tween = create_tween()
+	movement_tween.set_trans(Tween.TRANS_SINE)
+	movement_tween.set_ease(Tween.EASE_IN_OUT)
+
+	movement_tween.tween_property(
+		self,
+		"position",
+		target_position,
+		travel_duration
+	)
+
+	movement_tween.finished.connect(_on_movement_finished)
+
+func _on_movement_finished() -> void:
+		is_moving = false
+		_update_prompt()
 
 func _is_hour_available(current_hour: int) -> bool:
 	if active_from_hour < active_until_hour:
@@ -98,7 +130,9 @@ func _update_prompt() -> void:
 
 	prompt.visible = true
 
-	if is_available:
+	if is_moving:
+		prompt.text = "..."
+	elif is_available:
 		prompt.text = "E - Bicara"
 	else:
 		prompt.text = "Tutup"
