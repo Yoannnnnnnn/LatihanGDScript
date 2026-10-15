@@ -44,7 +44,7 @@ func _on_body_exited(body: Node2D) -> void:
 		player_nearby = false
 		_update_prompt()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _process(_delta: float) -> void:
 	if not player_nearby:
 		return
 
@@ -54,16 +54,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not is_available:
 		return
 
-	if not event.is_action_pressed("interact"):
+	if not Input.is_action_just_pressed("interact"):
 		return
 
+	_try_start_dialogue()
+
+func _try_start_dialogue() -> void:
 	var dialogue_ui = get_tree().current_scene.get_node_or_null("DialogueUI")
 
 	if dialogue_ui != null and not dialogue_ui.is_open:
 		var current_dialogue := _get_current_dialogue()
 
 		dialogue_ui.show_dialogue(npc_name, current_dialogue)
-		get_viewport().set_input_as_handled()
 
 func _update_schedule() -> void:
 	if not schedule_enabled:

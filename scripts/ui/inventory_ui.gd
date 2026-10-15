@@ -15,14 +15,14 @@ func _ready() -> void:
 
 	_refresh()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory"):
-		inventory_panel.visible = not inventory_panel.visible
+func _process(_delta: float) -> void:
+	if not Input.is_action_just_pressed("inventory"):
+		return
 
-		if inventory_panel.visible:
-			_refresh()
+	inventory_panel.visible = not inventory_panel.visible
 
-		get_viewport().set_input_as_handled()
+	if inventory_panel.visible:
+		_refresh()
 
 func _refresh() -> void:
 	if quest_manager == null:

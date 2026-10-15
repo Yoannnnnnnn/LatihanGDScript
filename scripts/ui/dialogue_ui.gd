@@ -8,6 +8,7 @@ extends CanvasLayer
 var dialogue_lines: PackedStringArray = []
 var current_line: int = 0
 var is_open: bool = false
+var ignore_next_interact: bool = false
 
 func _ready() -> void:
 	dialogue_panel.visible = false
@@ -30,6 +31,10 @@ func show_dialogue(speaker: String, text: String) -> void:
 	dialogue_panel.visible = true
 	is_open = true
 
+	# Mencegah tombol E yang membuka dialog
+	# langsung melanjutkan dialog.
+	ignore_next_interact = true
+
 	_update_hint()
 
 func hide_dialogue() -> void:
@@ -38,17 +43,24 @@ func hide_dialogue() -> void:
 	dialogue_lines.clear()
 	current_line = 0
 
-func _unhandled_input(event: InputEvent) -> void:
-	if is_open and event.is_action_pressed("interact"):
-		get_viewport().set_input_as_handled()
+func _process(_delta: float) -> void:
+	if ignore_next_interact:
+		ignore_next_interact = false
+		return
 
-		current_line += 1
+	if not is_open:
+		return
 
-		if current_line >= dialogue_lines.size():
-			hide_dialogue()
-		else:
-			dialogue_label.text = dialogue_lines[current_line]
-			_update_hint()
+	if not Input.is_action_just_pressed("interact"):
+		return
+
+	current_line += 1
+
+	if current_line >= dialogue_lines.size():
+		hide_dialogue()
+	else:
+		dialogue_label.text = dialogue_lines[current_line]
+		_update_hint()
 
 func _update_hint() -> void:
 	if current_line < dialogue_lines.size() - 1:

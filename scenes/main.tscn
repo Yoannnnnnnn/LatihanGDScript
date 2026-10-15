@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b57arygcbg8uh" path="res://scripts/systems/save_manager.gd" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://bbl5wwxl6jmpa" path="res://scripts/systems/time_manager.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://nqiblm3qwots" path="res://scripts/systems/day_night_layer.gd" id="13_trceg"]
+[ext_resource type="Script" uid="uid://du47arv4syom7" path="res://scripts/ui/mobile_controls.gd" id="14_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -201,7 +202,7 @@ offset_bottom = 67.0
 text = "Hari 1 08:00"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1407750238]
-layer = 4
+layer = 5
 script = ExtResource("9_choun")
 
 [node name="InventoryPanel" type="Panel" parent="InventoryUI" unique_id=277190010]
@@ -259,3 +260,59 @@ offset_right = 576.0
 offset_bottom = 324.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="MobileControls" type="CanvasLayer" parent="." unique_id=1824659361]
+layer = 4
+script = ExtResource("14_a8y0u")
+
+[node name="DPad" type="Control" parent="MobileControls" unique_id=884968986]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Up" type="Button" parent="MobileControls/DPad" unique_id=717375457]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 196.0
+offset_right = 104.0
+offset_bottom = 236.0
+text = "▲"
+
+[node name="Left" type="Button" parent="MobileControls/DPad" unique_id=858240471]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 236.0
+offset_right = 56.0
+offset_bottom = 276.0
+text = "◀"
+
+[node name="Down" type="Button" parent="MobileControls/DPad" unique_id=395034056]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 276.0
+offset_right = 104.0
+offset_bottom = 316.0
+text = "▼"
+
+[node name="Right" type="Button" parent="MobileControls/DPad" unique_id=736678913]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 236.0
+offset_right = 152.0
+offset_bottom = 276.0
+text = "▶"
+
+[node name="InteractButton" type="Button" parent="MobileControls" unique_id=1236965362]
+offset_left = 496.0
+offset_top = 236.0
+offset_right = 552.0
+offset_bottom = 292.0
+text = "E"
+
+[node name="InventoryButton" type="Button" parent="MobileControls" unique_id=1462050363]
+offset_left = 432.0
+offset_top = 244.0
+offset_right = 480.0
+offset_bottom = 292.0
+text = "I"
