@@ -249,7 +249,7 @@ script = ExtResource("11_ya4ey")
 
 [node name="TimeManager" type="Node" parent="." unique_id=708631548]
 script = ExtResource("12_eb6dy")
-seconds_per_game_minute = 0.1
+seconds_per_game_minute = 2.0
 
 [node name="DayNightLayer" type="CanvasLayer" parent="." unique_id=560252479]
 script = ExtResource("13_trceg")
