@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bbl5wwxl6jmpa" path="res://scripts/systems/time_manager.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://nqiblm3qwots" path="res://scripts/systems/day_night_layer.gd" id="13_trceg"]
 [ext_resource type="Script" uid="uid://du47arv4syom7" path="res://scripts/ui/mobile_controls.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://cp8a6dnbgjlvb" path="res://scripts/ui/pause_ui.gd" id="15_jkv2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("2_sugp2")
@@ -316,3 +317,46 @@ offset_top = 244.0
 offset_right = 480.0
 offset_bottom = 292.0
 text = "I"
+
+[node name="PauseButton" type="Button" parent="MobileControls" unique_id=1913673513]
+offset_left = 520.0
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 40.0
+text = "II"
+
+[node name="PauseUI" type="CanvasLayer" parent="." unique_id=1391583438]
+process_mode = 3
+layer = 6
+script = ExtResource("15_jkv2x")
+
+[node name="PausePanel" type="Panel" parent="PauseUI" unique_id=600993961]
+visible = false
+offset_left = 168.0
+offset_top = 70.0
+offset_right = 408.0
+offset_bottom = 254.0
+
+[node name="TitleLabel" type="Label" parent="PauseUI/PausePanel" unique_id=1278430515]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 16.0
+offset_right = 172.0
+offset_bottom = 39.0
+text = "GAME PAUSED"
+
+[node name="ResumeButton" type="Button" parent="PauseUI/PausePanel" unique_id=1943865642]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 96.0
+text = "Resume"
+
+[node name="SaveButton" type="Button" parent="PauseUI/PausePanel" unique_id=557422971]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 108.0
+offset_right = 200.0
+offset_bottom = 144.0
+text = "Save Game"

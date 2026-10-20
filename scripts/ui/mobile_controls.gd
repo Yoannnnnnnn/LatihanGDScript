@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var interact_button: Button = $InteractButton
 @onready var inventory_button: Button = $InventoryButton
 @onready var d_pad: Control = $DPad
+@onready var pause_button: Button = $PauseButton
 
 var dialogue_ui
 
@@ -32,6 +33,10 @@ func _ready() -> void:
 
 	inventory_button.pressed.connect(
 		_trigger_action.bind("inventory")
+	)
+	
+	pause_button.pressed.connect(
+	_trigger_action.bind("pause_game")
 	)
 	
 	dialogue_ui = get_tree().current_scene.get_node_or_null("DialogueUI")
@@ -68,3 +73,4 @@ func _exit_tree() -> void:
 
 	Input.action_release("interact")
 	Input.action_release("inventory")
+	Input.action_release("pause_game")
