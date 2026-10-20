@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mini Life RPG"
-run/main_scene="uid://obm0w5ut53u0"
+run/main_scene="uid://bvrdf2uc2qqqy"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var pause_panel: Panel = $PausePanel
 @onready var resume_button: Button = $PausePanel/ResumeButton
 @onready var save_button: Button = $PausePanel/SaveButton
+@onready var main_menu_button: Button = $PausePanel/MainMenuButton
 
 var is_paused: bool = false
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 	resume_button.pressed.connect(_on_resume_pressed)
 	save_button.pressed.connect(_on_save_pressed)
+	main_menu_button.pressed.connect(_on_main_menu_pressed)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause_game"):
@@ -25,6 +27,12 @@ func _set_paused(value: bool) -> void:
 
 func _on_resume_pressed() -> void:
 	_set_paused(false)
+
+func _on_main_menu_pressed() -> void:
+	get_tree().paused = false
+	is_paused = false
+
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_save_pressed() -> void:
 	var save_manager = get_tree().current_scene.get_node_or_null("SaveManager")
