@@ -1,8 +1,8 @@
 extends Area2D
 
 @export var item_id: String = "apple_01"
-
 var quest_manager
+@onready var pickup_sound: AudioStreamPlayer = $PickupSound
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -28,6 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	quest_manager.add_apple(item_id)
+	pickup_sound.play()
 
 func _refresh() -> void:
 	if quest_manager == null:

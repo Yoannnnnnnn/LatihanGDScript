@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var speaker_label: Label = $DialoguePanel/SpeakerLabel
 @onready var dialogue_label: Label = $DialoguePanel/DialogueLabel
 @onready var hint_label: Label = $DialoguePanel/HintLabel
+@onready var dialogue_sound: AudioStreamPlayer = $DialogueSound
 
 var dialogue_lines: PackedStringArray = []
 var current_line: int = 0
@@ -36,6 +37,7 @@ func show_dialogue(speaker: String, text: String) -> void:
 	ignore_next_interact = true
 
 	_update_hint()
+	dialogue_sound.play()
 
 func hide_dialogue() -> void:
 	dialogue_panel.visible = false
@@ -61,6 +63,7 @@ func _process(_delta: float) -> void:
 	else:
 		dialogue_label.text = dialogue_lines[current_line]
 		_update_hint()
+		dialogue_sound.play()
 
 func _update_hint() -> void:
 	if current_line < dialogue_lines.size() - 1:
