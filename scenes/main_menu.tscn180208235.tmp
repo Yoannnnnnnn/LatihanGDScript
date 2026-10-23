@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bvrdf2uc2qqqy"]
+
+[ext_resource type="Script" uid="uid://k6ncmu8w42jd" path="res://scripts/ui/main_menu.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control" unique_id=1125570701]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1440501598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08235294, 0.08235294, 0.16862746, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1854284360]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 48.0
+offset_right = 456.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 20
+text = "MINI LIFE RPG"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=1194252709]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 140.0
+offset_right = 388.0
+offset_bottom = 180.0
+text = "NEW GAME"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1098118278]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 240.0
+offset_right = 388.0
+offset_bottom = 280.0
+text = "QUIT"
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1238370628]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 190.0
+offset_right = 388.0
+offset_bottom = 230.0
+text = "CONTINUE"

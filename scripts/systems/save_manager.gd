@@ -6,13 +6,33 @@ var player
 var quest_manager
 var time_manager
 
+func _refresh_references() -> void:
+	var current_scene = get_tree().current_scene
+
+	if current_scene == null:
+		return
+
+	player = current_scene.get_node_or_null("Player")
+	quest_manager = current_scene.get_node_or_null("QuestManager")
+	time_manager = current_scene.get_node_or_null("TimeManager")
+
 func _ready() -> void:
-	player = get_tree().current_scene.get_node_or_null("Player")
-	quest_manager = get_tree().current_scene.get_node_or_null("QuestManager")
-	time_manager = get_tree().current_scene.get_node_or_null("TimeManager")
+	_refresh_references()
 
 	print("Tekan K untuk menyimpan game.")
 	print("Tekan L untuk memuat game.")
+
+	var scene_tree: SceneTree = get_tree()
+
+	if scene_tree.has_meta(
+        "load_save_after_scene_change"
+	):
+		scene_tree.remove_meta(
+            "load_save_after_scene_change"
+		)
+
+		print("SaveManager akan memuat save.")
+		call_deferred("load_game")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("save_game"):
@@ -24,6 +44,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func save_game() -> void:
+	_refresh_references()
+
 	if (
 		player == null
 		or quest_manager == null
@@ -57,10 +79,17 @@ func save_game() -> void:
 	file.close()
 
 	print("Game berhasil disimpan.")
+	print("Posisi tersimpan: ", player.position)
 
 func load_game() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
-		print("Belum ada file save.")
+	_refresh_references()
+
+	if (
+		player == null
+		or quest_manager == null
+		or time_manager == null
+	):
+		print("Load gagal: node penting tidak ditemukan.")
 		return
 
 	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -117,3 +146,6 @@ func load_game() -> void:
 	quest_manager.notify_state_changed()
 
 	print("Game berhasil dimuat.")
+	print("Posisi dimuat: ", player.position)
+	print("Apel dimuat: ", quest_manager.apples_collected)
+	print("Koin dimuat: ", quest_manager.money)
