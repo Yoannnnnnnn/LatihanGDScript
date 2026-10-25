@@ -18,8 +18,14 @@ func _ready() -> void:
 	sfx_slider.max_value = 1.0
 	sfx_slider.step = 0.01
 
-	music_slider.value_changed.connect(_on_music_volume_changed)
-	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
+	music_slider.value_changed.connect(
+		_on_music_volume_changed
+	)
+
+	sfx_slider.value_changed.connect(
+		_on_sfx_volume_changed
+	)
+
 	close_button.pressed.connect(hide_settings)
 
 	_refresh_sliders()
@@ -32,39 +38,16 @@ func hide_settings() -> void:
 	settings_panel.visible = false
 
 func _on_music_volume_changed(value: float) -> void:
-	_set_bus_volume("Music", value)
+	SettingsManager.set_music_volume(value)
 
 func _on_sfx_volume_changed(value: float) -> void:
-	_set_bus_volume("SFX", value)
-
-func _set_bus_volume(bus_name: String, value: float) -> void:
-	var bus_index := AudioServer.get_bus_index(bus_name)
-
-	if bus_index == -1:
-		return
-
-	var volume_db: float
-
-	if value <= 0.001:
-		volume_db = -80.0
-	else:
-		volume_db = linear_to_db(value)
-
-	AudioServer.set_bus_volume_db(bus_index, volume_db)
+	SettingsManager.set_sfx_volume(value)
 
 func _refresh_sliders() -> void:
-	music_slider.value = _get_bus_volume("Music", 0.8)
-	sfx_slider.value = _get_bus_volume("SFX", 0.8)
+	music_slider.set_value_no_signal(
+		SettingsManager.music_volume
+	)
 
-func _get_bus_volume(
-	bus_name: String,
-	fallback_value: float
-) -> float:
-	var bus_index := AudioServer.get_bus_index(bus_name)
-
-	if bus_index == -1:
-		return fallback_value
-
-	var volume_db := AudioServer.get_bus_volume_db(bus_index)
-
-	return clamp(db_to_linear(volume_db), 0.0, 1.0)
+	sfx_slider.set_value_no_signal(
+		SettingsManager.sfx_volume
+	)
